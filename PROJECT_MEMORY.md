@@ -38,6 +38,9 @@
   and the Cloudflare edge all passed route and content-type checks.
 - Pre-deploy production state is recoverable at
   `/var/backups/stackline-docs/20260828T085718Z-har-validator`.
+- Canonical Drive records: decision `1ej8lvrn2YHyjqDXtb0XwMDwCKDVNGS53`,
+  project memory `1bXhs5QHtj2XbmQd-HFgxc7tmPK0xbVhL`, and release verification
+  `1vFvL6OVHbU9ButVa81Wxho-zL7uzM_Vy`.
 - Adoption debt at publication: one qualified PR and one different-repository
   qualified issue. Public contact remains subject to a fresh live deduplication
   search immediately before each write.

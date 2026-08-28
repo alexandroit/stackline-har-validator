@@ -157,5 +157,22 @@
   },
   "completedAt": "2026-08-28T09:01:15Z",
   "localDecisionRecord": "projects/har-validator/UPSTREAM_AUDIT.md",
-  "canonicalDriveDecision": null
+  "canonicalDriveDecision": {
+    "id": "1ej8lvrn2YHyjqDXtb0XwMDwCKDVNGS53",
+    "url": "https://drive.google.com/file/d/1ej8lvrn2YHyjqDXtb0XwMDwCKDVNGS53/view",
+    "uploadedAt": "2026-08-28T09:02:45.289Z",
+    "folderId": "1DrMsIKBMIDf8jQ_DRuIQA3f0dHoS5a5z"
+  },
+  "canonicalDriveProjectMemory": {
+    "id": "1bXhs5QHtj2XbmQd-HFgxc7tmPK0xbVhL",
+    "url": "https://drive.google.com/file/d/1bXhs5QHtj2XbmQd-HFgxc7tmPK0xbVhL/view",
+    "uploadedAt": "2026-08-28T09:03:31.485Z",
+    "folderId": "1DrMsIKBMIDf8jQ_DRuIQA3f0dHoS5a5z"
+  },
+  "canonicalDriveReleaseVerification": {
+    "id": "1vFvL6OVHbU9ButVa81Wxho-zL7uzM_Vy",
+    "url": "https://drive.google.com/file/d/1vFvL6OVHbU9ButVa81Wxho-zL7uzM_Vy/view",
+    "uploadedAt": "2026-08-28T09:02:49.823Z",
+    "folderId": "1DrMsIKBMIDf8jQ_DRuIQA3f0dHoS5a5z"
+  }
 }
