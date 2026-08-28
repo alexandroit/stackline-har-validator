@@ -60,3 +60,4 @@
 - Different-repository check: PASS. Remaining adoption debt:
   `COVERAGE_COMPLETE`. Do not follow up unsolicited; monitor and answer only a
   concrete evidence-backed maintainer question.
+- Canonical Drive adoption record: `1tU-50m6Pw8XxkNaNWfS4V81JPVRlAQ5u`.

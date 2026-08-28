@@ -167,13 +167,19 @@
   "canonicalDriveProjectMemory": {
     "id": "1bXhs5QHtj2XbmQd-HFgxc7tmPK0xbVhL",
     "url": "https://drive.google.com/file/d/1bXhs5QHtj2XbmQd-HFgxc7tmPK0xbVhL/view",
-    "uploadedAt": "2026-08-28T09:03:31.485Z",
+    "uploadedAt": "2026-08-28T09:14:05.059Z",
     "folderId": "1DrMsIKBMIDf8jQ_DRuIQA3f0dHoS5a5z"
   },
   "canonicalDriveReleaseVerification": {
     "id": "1vFvL6OVHbU9ButVa81Wxho-zL7uzM_Vy",
     "url": "https://drive.google.com/file/d/1vFvL6OVHbU9ButVa81Wxho-zL7uzM_Vy/view",
     "uploadedAt": "2026-08-28T09:02:49.823Z",
+    "folderId": "1DrMsIKBMIDf8jQ_DRuIQA3f0dHoS5a5z"
+  },
+  "canonicalDriveAdoptionTargets": {
+    "id": "1tU-50m6Pw8XxkNaNWfS4V81JPVRlAQ5u",
+    "url": "https://drive.google.com/file/d/1tU-50m6Pw8XxkNaNWfS4V81JPVRlAQ5u/view",
+    "uploadedAt": "2026-08-28T09:13:44.798Z",
     "folderId": "1DrMsIKBMIDf8jQ_DRuIQA3f0dHoS5a5z"
   }
 }
