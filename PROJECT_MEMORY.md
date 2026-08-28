@@ -10,3 +10,34 @@
   bounded surface, unresolved ownership gap, and no healthy drop-in.
 - Red gates: any unexplained differential result, schema drift, runtime,
   browser, type, packed-consumer, audit, license, or artifact failure.
+
+## 2026-08-28 — PUBLISHED
+
+- Transitioned `CODEX_READY -> RESEARCHING -> BUILDING -> PUBLISHED` without a
+  user pin. The new author cluster remains distinct from the historical fixed
+  thlorenz roster.
+- The accepted 36-file artifact was built from tagged commit
+  `956e2c79662ed53a58a2d3f21b15911e80c8b08e`; SHA-256
+  `3a4a86be69afa59ed57ebbfa05804fed9f293c3d3802565886fd7d451c5f52ed`.
+  An earlier candidate was rejected before either registry because it did not
+  preserve browser constructor identity and did not contain complete
+  transitive license texts.
+- The exact accepted bytes passed Verdaccio first, then were published once to
+  official npm by `alex360qc` at `2026-08-28T08:40:14.429Z`. Public metadata,
+  tarball bytes, scoped installation, and historical-key npm alias installation
+  all passed; no version was republished during public propagation.
+- Public source: https://github.com/alexandroit/stackline-har-validator. Main
+  CI, tag CI, and CodeQL passed for the frozen release source. The nine-asset
+  GitHub release reports `immutable: true`, and its downloaded tarball is
+  byte-identical to the registry artifact.
+- Production documentation:
+  https://alexandro.net/docs/vanilla/har-validator/. Documentation commit
+  `49a761e1388791eb8e8d595a4812da54b13077a2` passed CI and CodeQL. Production
+  contains the exact 34-file catalog and 25-file package manifests; the
+  aggregate sitemap contains all 12 routes. Nginx, origin, ordinary public DNS,
+  and the Cloudflare edge all passed route and content-type checks.
+- Pre-deploy production state is recoverable at
+  `/var/backups/stackline-docs/20260828T085718Z-har-validator`.
+- Adoption debt at publication: one qualified PR and one different-repository
+  qualified issue. Public contact remains subject to a fresh live deduplication
+  search immediately before each write.
