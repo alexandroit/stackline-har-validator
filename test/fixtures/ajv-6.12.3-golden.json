@@ -1,0 +1,25 @@
+{
+  "schema": "har-validator-ajv-6.12.3-golden-v1",
+  "observedAt": "2026-08-28T08:34:00Z",
+  "ajv": {
+    "version": "6.12.3",
+    "shasum": "18c5af38a111ddeb4f2697bd78d68abc1cabd706",
+    "integrity": "sha512-4K0cK3L1hsqk9xIb2z9vs/XU+PGJZ9PNpJRDS9YLzmNdX6jmVPfamLvTJr0aDAusnHyCHO6MjzlkAsgtqp9teA=="
+  },
+  "harSchema": "2.0.0",
+  "validatorCount": 18,
+  "vectorsPerValidator": 8,
+  "outcomeCount": 144,
+  "vectors": [
+    "undefined",
+    "null",
+    "false",
+    "zero",
+    "empty-string",
+    "empty-object",
+    "empty-array",
+    "valid-schema-specific"
+  ],
+  "canonicalOutcomeSha256": "62ef57dce0dad14d4cf883211d35851090b300aeb4008a04d38f58bb8c9baf41",
+  "method": "Installed ajv@6.12.3 and har-schema@2.0.0 in an isolated temporary tree without a lockfile, loaded draft-06 plus all 18 schemas with allErrors true, normalized falsy inputs as upstream does, serialized success/error outcomes in har-schema key order, and hashed the ordered JSON with SHA-256. The committed differential test recomputes the same outcome hash using the maintained implementation."
+}

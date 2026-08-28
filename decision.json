@@ -1,0 +1,107 @@
+{
+  "schema": "stackline-package-decision-v1",
+  "package": "har-validator",
+  "target": "@stackline/har-validator",
+  "selectedQueueRank": 1,
+  "selectedByUserPin": false,
+  "observationDate": "2026-08-28",
+  "decidedAt": "2026-08-28T08:15:36Z",
+  "transition": "CODEX_READY -> RESEARCHING -> BUILDING",
+  "canonicalState": "BUILDING",
+  "decision": "GO",
+  "reasonCode": "ACTIVE_DIRECT_USE_UNSUPPORTED_RELEASE_OWNERSHIP_GAP",
+  "reason": "The explicitly unsupported package has verified current direct runtime use, a bounded testable compatibility surface, an unresolved release-ownership gap, and no healthy maintained drop-in successor.",
+  "upstream": {
+    "version": "5.1.5",
+    "publishedAt": "2020-07-30T04:42:33.615Z",
+    "repository": "https://github.com/ahmadnassri/node-har-validator",
+    "repositoryArchived": false,
+    "license": "MIT",
+    "currentNpmWriteMaintainers": ["ahmadnassri"],
+    "dependencies": {
+      "ajv": "^6.12.3",
+      "har-schema": "^2.0.0"
+    }
+  },
+  "downloads": {
+    "count": 11738824,
+    "period": "2026-08-21:2026-08-27",
+    "observedAt": "2026-08-28T08:15:36Z",
+    "source": "https://api.npmjs.org/downloads/point/2026-08-21:2026-08-27/har-validator",
+    "proofOfDirectUse": false
+  },
+  "directUse": [{
+    "repository": "Kong/insomnia-mockbin",
+    "manifest": "package.json",
+    "usage": ["lib/routes/bins/create.js", "lib/routes/bins/update.js"],
+    "api": "response(data) Promise validator",
+    "lastPush": "2026-08-26",
+    "proof": "Direct runtime declaration and source calls in active request routes."
+  }],
+  "tarball": {
+    "url": "https://registry.npmjs.org/har-validator/-/har-validator-5.1.5.tgz",
+    "fileCount": 6,
+    "sha1": "1f0803b9f8cb20c0fa13822df1ecddb36bde1efd",
+    "sha256": "ee08af4aec68e79d2804bf6de4a5972a2ebb0c76a996b0f562a10f8d72ab7e0b",
+    "integrity": "sha512-nmT2T0lljbxdQZfspsno9hgrG3Uir6Ks5afism62poxqBM6sDnMEuPmzTq8XN0OEwqKLLdh1jQI3qyE66Nzb3w=="
+  },
+  "verification": {
+    "upstreamArtifactImplementation": {
+      "version": "5.1.5",
+      "promiseCases": 144,
+      "booleanCases": 72,
+      "callbackCases": 72,
+      "differentialOutcomes": 288,
+      "mismatches": 0
+    },
+    "exactLegacyDependencyCharacterization": {
+      "ajv": "6.12.3",
+      "harSchema": "2.0.0",
+      "broadCases": 4824,
+      "broadMismatches": 0,
+      "committedGoldenCases": 144,
+      "committedGoldenSha256": "62ef57dce0dad14d4cf883211d35851090b300aeb4008a04d38f58bb8c9baf41",
+      "record": "test/fixtures/ajv-6.12.3-golden.json"
+    },
+    "supportedNodeVersions": ["6.17.1", "8.17.0", "10.24.1", "12.22.12", "14.21.3", "16.20.2", "18.20.8", "20.20.0", "22.22.0", "24.13.0"],
+    "browserConstructorIdentity": "PASS",
+    "typescript39": "PASS",
+    "typescriptCurrent": "PASS",
+    "publint": "PASS",
+    "areTheTypesWrong": "PASS",
+    "productionAuditKnownVulnerabilities": 0,
+    "fullAuditKnownVulnerabilities": 0,
+    "bundledProductionLicenseComponents": 7
+  },
+  "acceptanceCriteria": [
+    "Preserve all 18 root Promise validators, property order, resolution identity and complete Ajv errors",
+    "Preserve lib/async boolean, synchronous callback and callback-return behavior",
+    "Preserve lib/promise and lib/error deep entries",
+    "Correct HARError's prototype isolation while retaining instanceof Error",
+    "Pass differential valid, invalid, falsy, malformed and stress tests against 5.1.5",
+    "Pass CJS, ESM, browser, TypeScript 3.9/current, scoped and legacy-alias packed consumers",
+    "Pass CommonJS on Node 6.17.1 through current, plus publint, ATTW, audits, licenses and immutable-artifact verification"
+  ],
+  "alternatives": [
+    {"name": "har-validator-maintained", "assessment": "A near-copy without evidence of sustained maintenance or meaningful current adoption."},
+    {"name": "@har-sdk/validator", "assessment": "Maintained HAR tooling with a different API; not a drop-in."},
+    {"name": "Ajv plus caller-owned schemas", "assessment": "A neutral migration option that requires caller-owned schema and error-contract work."}
+  ],
+  "userPin": {
+    "resolved": false,
+    "resolution": "NOT_PINNED",
+    "clearRequiredNextCycle": false
+  },
+  "publication": {
+    "artifactBuilt": false,
+    "verdaccioPublished": false,
+    "npmPublished": false,
+    "githubRepositoryCreated": false,
+    "documentationPublished": false,
+    "adoptionPullRequest": null,
+    "adoptionIssue": null,
+    "remainingAdoptionDebt": "ONE_QUALIFIED_PR_AND_ONE_QUALIFIED_ISSUE"
+  },
+  "localDecisionRecord": "projects/har-validator/UPSTREAM_AUDIT.md",
+  "canonicalDriveDecision": null
+}

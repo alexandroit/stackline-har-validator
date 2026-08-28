@@ -1,0 +1,16 @@
+@stackline/har-validator is an independent maintained continuation of
+har-validator. It is not affiliated with or endorsed by Ahmad Nassri or the
+upstream project.
+
+The compatibility implementation derives from the MIT-licensed har-validator
+project:
+
+Copyright (c) 2018 Ahmad Nassri <ahmad@ahmadnassri.com>
+
+Stackline maintenance, packaging, browser builds, declarations,
+documentation, and additional tests are Copyright (c) 2026 Stackline
+Maintainers.
+
+The browser builds contain the complete seven-package production graph. See
+THIRD_PARTY_LICENSES.md and `licenses/` for every MIT, ISC, and BSD-2-Clause
+notice and license text.

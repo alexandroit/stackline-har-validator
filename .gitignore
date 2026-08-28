@@ -1,0 +1,5 @@
+node_modules/
+coverage/
+release-candidate/
+.release-candidate-staging-*/
+*.tgz
