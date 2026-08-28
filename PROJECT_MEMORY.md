@@ -44,3 +44,19 @@
 - Adoption debt at publication: one qualified PR and one different-repository
   qualified issue. Public contact remains subject to a fresh live deduplication
   search immediately before each write.
+
+## 2026-08-28 — adoption minimum covered
+
+- Opened dependency-only migration PR
+  https://github.com/httptoolkit/httpsnippet/pull/28 after a fresh zero-result
+  live contact/competition search. It preserves the historical key and deep
+  callback import through the exact npm alias; 1,667 tests and the deep
+  callback/stress smoke pass. The PR discloses replacement maintainership.
+- Opened issue https://github.com/Kong/insomnia-mockbin/issues/236 in a
+  different repository after its own fresh live deduplication search. It asks
+  maintainers to choose aliasing, migration to their existing Ajv 8 path, or
+  intentional retention; the focused route smoke passes 4/4. It offers neutral
+  alternatives, discloses maintainership, and makes no vulnerability claim.
+- Different-repository check: PASS. Remaining adoption debt:
+  `COVERAGE_COMPLETE`. Do not follow up unsolicited; monitor and answer only a
+  concrete evidence-backed maintainer question.

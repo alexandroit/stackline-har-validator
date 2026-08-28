@@ -151,9 +151,10 @@
     "npmPublished": true,
     "githubRepositoryCreated": true,
     "documentationPublished": true,
-    "adoptionPullRequest": null,
-    "adoptionIssue": null,
-    "remainingAdoptionDebt": "ONE_QUALIFIED_PR_AND_ONE_QUALIFIED_ISSUE"
+    "adoptionPullRequest": "https://github.com/httptoolkit/httpsnippet/pull/28",
+    "adoptionIssue": "https://github.com/Kong/insomnia-mockbin/issues/236",
+    "remainingAdoptionDebt": "COVERAGE_COMPLETE",
+    "differentRepositoryCheck": "PASS"
   },
   "completedAt": "2026-08-28T09:01:15Z",
   "localDecisionRecord": "projects/har-validator/UPSTREAM_AUDIT.md",
