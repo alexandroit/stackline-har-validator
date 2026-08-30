@@ -1,4 +1,4 @@
-# Registry handoff: @stackline/har-validator 1.0.0
+# Registry handoff
 
 Observation date: 2026-08-28.
 
@@ -31,3 +31,40 @@ downloaded release tarball is byte-identical to the registry artifact.
 
 No version may be republished. Any future change requires a new version, a new
 tag, and a new immutable artifact.
+
+## 1.0.1 dependency hardening — 2026-08-30
+
+The accepted artifact is
+`release-candidate/stackline-har-validator-1.0.1.tgz`, built from source
+commit `26c5cac92154d28f66a793c0a3f20d0feeb97907` and tag
+`stackline-v1.0.1`.
+
+- SHA-1: `dba7b58e4abf2ead41d061207aee12f1cb6a4585`
+- SHA-256:
+  `b2959f4ae5c5e9505313c3fd390a0e0ff07fa868cea0ea54ff33732c419c2103`
+- SHA-512:
+  `36e5ee5689abe6fd2a1e0516d2d9e4e88148ad97acc8ef351991829bef6ce848090ab1b82964f55228fe4738b60f7808b4a03b460f5d0f089f40395d4e9c3902`
+- npm integrity:
+  `sha512-NuXuVomr5v0qHgUW0tnk6IFIrZesyO81GZGCm+9s6EgJCrG4KWT1Uij+Rzi2D3gItKA7Rg9dDwifQDldTpw5Ag==`
+- Inventory: 58 files, 144,919 packed bytes, 950,222 unpacked bytes;
+  every shipped regular file is mode `0644`.
+
+The package now has zero runtime, optional, and peer dependencies. Ajv 6.15,
+its five runtime components, and the exact 18-file HAR schema set are bundled
+with complete license texts, fingerprints, and explicit CycloneDX edges.
+Warning-free scoped and historical-key alias installs, `npm ls`, and full and
+production audits pass.
+
+The Verdaccio and official npm tarballs were downloaded and byte-compared with
+the release candidate. Official npm records publication at
+`2026-08-30T08:56:39.244Z` and reports the recorded integrity, 58 files,
+950,222 unpacked bytes, an empty dependency map, and a registry signature.
+
+Main CI run `33302675845`, tag CI run `33302773832`, and CodeQL run
+`33302675813` passed. The nine-asset GitHub release is immutable:
+https://github.com/alexandroit/stackline-har-validator/releases/tag/stackline-v1.0.1
+
+The dynamic EN/PT/FR catalog and production documentation expose version
+`1.0.1`, zero external production dependencies, bundled-component
+provenance, migration guidance, security boundaries, licenses, and the release
+changelog at https://alexandro.net/docs/vanilla/har-validator/.

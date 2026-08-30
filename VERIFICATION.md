@@ -44,3 +44,30 @@ Publication evidence is appended after the immutable release is verified.
   CodeQL run `33157319890`: PASS. All 19 sampled package/catalog/robots/sitemap
   routes returned 200 with expected MIME types through ordinary public DNS and
   Cloudflare address `172.64.80.1`; no email-protection markup was injected.
+
+## 2026-08-30 dependency-hardening verification
+
+- Clean `npm ci`: 173 signed development packages, no deprecation warning,
+  and zero vulnerabilities. The packed consumer installs without warnings and
+  has no runtime, optional, or peer subtree.
+- The exact 18-schema ordered digest is
+  `dc42ed63839894a267a2adc3225ddc33b931a8130f360ae966ad5a2cf52813c0`.
+  The self-contained Ajv runtime digest is
+  `4f8fe916ab12ba4eeccee11200c648410bbed3cc64d0f1bdf4dc1a2dd36fc2a4`.
+- Licensed upstream, immutable 144-case golden, Promise/boolean/callback,
+  malformed, stress, browser CJS/ESM, constructor identity, TypeScript
+  3.9/current, and Node 6.17.1 through 24 gates pass. Coverage remains 98.14%
+  lines, 98.21% branches, and 100% functions.
+- `publint` and Are The Types Wrong pass every export. `npm ls`, full audit,
+  production audit, license inventory, deterministic rebuild, packed direct
+  and alias installs, and 173 registry signatures pass.
+- Main CI `33302675845`, tag CI `33302773832`, and CodeQL
+  `33302675813`: PASS.
+- Accepted artifact SHA-256:
+  `b2959f4ae5c5e9505313c3fd390a0e0ff07fa868cea0ea54ff33732c419c2103`.
+  Verdaccio, official npm, and immutable GitHub release tarballs are
+  byte-identical.
+- Production catalog and documentation report `1.0.1` and zero external
+  production dependencies. Nginx validation passes; package metadata, page,
+  dependency review, and changelog routes return 200 with files at `0644`
+  under directories at `0755`.
