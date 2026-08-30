@@ -11,6 +11,6 @@ Stackline maintenance, packaging, browser builds, declarations,
 documentation, and additional tests are Copyright (c) 2026 Stackline
 Maintainers.
 
-The browser builds contain the complete seven-package production graph. See
-THIRD_PARTY_LICENSES.md and `licenses/` for every MIT, ISC, and BSD-2-Clause
-notice and license text.
+The Node and browser builds contain the audited Ajv 6.15 runtime and the exact
+HAR 1.2 schema set. See THIRD_PARTY_LICENSES.md and `licenses/` for every MIT,
+ISC, and BSD-2-Clause notice and complete license text.

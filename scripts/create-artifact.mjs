@@ -136,7 +136,8 @@ try {
 
   const licenses = {
     package: { name: '@stackline/har-validator', license: 'MIT', file: 'LICENSE' },
-    productionDependencies: [
+    productionDependencies: [],
+    bundledComponents: [
       { name: 'ajv', version: '6.15.0', license: 'MIT', file: 'licenses/ajv-6.15.0-MIT.txt' },
       { name: 'fast-deep-equal', version: '3.1.3', license: 'MIT', file: 'licenses/fast-deep-equal-3.1.3-MIT.txt' },
       { name: 'fast-json-stable-stringify', version: '2.1.0', license: 'MIT', file: 'licenses/fast-json-stable-stringify-2.1.0-MIT.txt' },
@@ -152,9 +153,8 @@ try {
   await copyFile(path.join(root, 'CHANGELOG.md'),
     path.join(staging, 'RELEASE_NOTES.md'))
 
-  // npm's omit traversal can misclassify a production edge when the source
-  // development graph also reaches that package. Generate the SBOM from an
-  // isolated production install of the exact frozen tarball instead.
+  // Generate the install graph from the frozen tarball, then describe the
+  // audited code bundled inside the zero-edge production package.
   const sbomConsumer = await mkdtemp(path.join(staging, '.sbom-consumer-'))
   await writeFile(path.join(sbomConsumer, 'package.json'), JSON.stringify({
     name: 'stackline-har-validator-sbom-consumer',
@@ -169,47 +169,68 @@ try {
     'sbom', '--omit=dev', '--sbom-format', 'cyclonedx'
   ], sbomConsumer)
   const parsedSbom = JSON.parse(sbom)
-  const components = [
+  const installedComponents = [
     parsedSbom.metadata && parsedSbom.metadata.component,
     ...(parsedSbom.components || [])
   ].filter(Boolean)
-  const rootComponent = components.find(({ name, version }) =>
-    name === '@stackline/har-validator' && version === '1.0.0')
-  const ajvComponent = components.find(({ name, version }) =>
-    name === 'ajv' && version === '6.15.0')
-  const schemaComponent = components.find(({ name, version }) =>
-    name === 'har-schema' && version === '2.0.0')
-  const transitiveComponents = [
-    ['fast-deep-equal', '3.1.3'],
-    ['fast-json-stable-stringify', '2.1.0'],
-    ['json-schema-traverse', '0.4.1'],
-    ['punycode', '2.3.1'],
-    ['uri-js', '4.4.1']
-  ].map(([name, version]) => components.find((component) =>
-    component.name === name && component.version === version))
-  assert(rootComponent, 'SBOM must contain @stackline/har-validator@1.0.0')
-  assert(ajvComponent, 'SBOM must contain ajv@6.15.0')
-  assert(schemaComponent, 'SBOM must contain har-schema@2.0.0')
-  assert(transitiveComponents.every(Boolean), 'SBOM must contain every transitive production component')
-  const rootEdge = (parsedSbom.dependencies || []).find(({ ref }) =>
-    ref === rootComponent['bom-ref'])
-  assert(rootEdge && rootEdge.dependsOn.includes(ajvComponent['bom-ref']),
-    'SBOM must link @stackline/har-validator to ajv')
-  assert(rootEdge && rootEdge.dependsOn.includes(schemaComponent['bom-ref']),
-    'SBOM must link @stackline/har-validator to har-schema')
-  const ajvEdge = (parsedSbom.dependencies || []).find(({ ref }) =>
-    ref === ajvComponent['bom-ref'])
-  for (const component of transitiveComponents.filter(({ name }) => name !== 'punycode')) {
-    assert(ajvEdge && ajvEdge.dependsOn.includes(component['bom-ref']),
-      `SBOM must link ajv to ${component.name}`)
+  const rootComponent = installedComponents.find(({ name, version }) =>
+    name === packageJson.name && version === packageJson.version)
+  assert(rootComponent,
+    `SBOM must contain ${packageJson.name}@${packageJson.version}`)
+
+  const bundledComponents = licenses.bundledComponents.map((component) => ({
+    type: 'library',
+    'bom-ref': `pkg:npm/${component.name}@${component.version}`,
+    name: component.name,
+    version: component.version,
+    scope: 'required',
+    licenses: [{ license: { id: component.license } }],
+    purl: `pkg:npm/${component.name}@${component.version}`,
+    properties: [
+      { name: 'stackline:distribution', value: 'bundled' },
+      { name: 'stackline:license-file', value: component.file }
+    ]
+  }))
+  parsedSbom.components = [
+    ...(parsedSbom.components || []),
+    ...bundledComponents
+  ]
+  parsedSbom.dependencies = parsedSbom.dependencies || []
+
+  function component (name) {
+    const found = bundledComponents.find((candidate) => candidate.name === name)
+    assert(found, `SBOM must contain bundled ${name}`)
+    return found
   }
-  const uriComponent = transitiveComponents.find(({ name }) => name === 'uri-js')
-  const punycodeComponent = transitiveComponents.find(({ name }) => name === 'punycode')
-  const uriEdge = (parsedSbom.dependencies || []).find(({ ref }) =>
-    ref === uriComponent['bom-ref'])
-  assert(uriEdge && uriEdge.dependsOn.includes(punycodeComponent['bom-ref']),
-    'SBOM must link uri-js to punycode')
-  await writeFile(path.join(staging, 'sbom.cdx.json'), sbom)
+
+  function setEdge (ref, dependencies) {
+    let edge = parsedSbom.dependencies.find((candidate) => candidate.ref === ref)
+    if (!edge) {
+      edge = { ref, dependsOn: [] }
+      parsedSbom.dependencies.push(edge)
+    }
+    edge.dependsOn = dependencies.map((dependency) => dependency['bom-ref'])
+  }
+
+  setEdge(rootComponent['bom-ref'], [component('ajv'), component('har-schema')])
+  setEdge(component('ajv')['bom-ref'], [
+    component('fast-deep-equal'),
+    component('fast-json-stable-stringify'),
+    component('json-schema-traverse'),
+    component('uri-js')
+  ])
+  setEdge(component('uri-js')['bom-ref'], [component('punycode')])
+  for (const leaf of [
+    'fast-deep-equal',
+    'fast-json-stable-stringify',
+    'har-schema',
+    'json-schema-traverse',
+    'punycode'
+  ]) {
+    setEdge(component(leaf)['bom-ref'], [])
+  }
+  await writeFile(path.join(staging, 'sbom.cdx.json'),
+    JSON.stringify(parsedSbom, null, 2) + '\n')
   await rm(sbomConsumer, { force: true, recursive: true })
 
   await rename(staging, destination)

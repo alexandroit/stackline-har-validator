@@ -1,6 +1,6 @@
 {
   "name": "@stackline/har-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compatibility-first HAR 1.2 validator with maintained packaging, browser builds, and first-party types",
   "type": "commonjs",
   "main": "./lib/promise.js",
@@ -79,6 +79,7 @@
     "index.d.mts",
     "CHANGELOG.md",
     "COMPATIBILITY_CONTRACT.md",
+    "DEPENDENCY_REVIEW.md",
     "LICENSE",
     "MIGRATION.md",
     "NOTICE",
@@ -92,7 +93,7 @@
     "lint": "eslint lib esm index.mjs scripts test examples",
     "test:upstream": "node --test test/upstream.test.cjs",
     "test:differential": "node --test test/differential.test.cjs",
-    "test:contract": "node --test test/contract.test.cjs test/malformed-security.test.cjs test/stress.test.cjs",
+    "test:contract": "node --test test/contract.test.cjs test/malformed-security.test.cjs test/stress.test.cjs test/vendor-integrity.test.cjs",
     "test:browser": "node scripts/check-browser.mjs",
     "test:esm": "node test/esm.mjs",
     "test:types": "node node_modules/typescript-3-9/bin/tsc -p test/types/tsconfig.legacy.json && node node_modules/typescript/bin/tsc -p test/types/tsconfig.modern.json",
@@ -121,17 +122,14 @@
   "license": "MIT",
   "engines": { "node": ">=6" },
   "publishConfig": { "access": "public" },
-  "dependencies": {
-    "ajv": "6.15.0",
-    "har-schema": "2.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
     "@eslint/js": "10.0.1",
+    "ajv": "6.15.0",
     "c8": "12.0.0",
     "esbuild": "0.28.2",
     "eslint": "10.9.1",
-    "har-validator-baseline": "npm:har-validator@5.1.5",
     "publint": "0.3.24",
     "typescript": "7.0.2",
     "typescript-3-9": "npm:typescript@3.9.10"

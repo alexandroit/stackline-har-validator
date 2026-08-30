@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm'
+const root = new URL('../', import.meta.url)
+const packageJson = JSON.parse(await readFile(new URL('package.json', root), 'utf8'))
 const registry = process.env.STACKLINE_TEST_REGISTRY || 'http://127.0.0.1:4873/'
 const temporary = await mkdtemp(path.join(os.tmpdir(), 'stackline-har-registry-'))
 
@@ -22,8 +24,8 @@ try {
     name: 'har-validator-registry-consumer',
     private: true,
     dependencies: {
-      '@stackline/har-validator': '1.0.0',
-      'har-validator': 'npm:@stackline/har-validator@1.0.0'
+      '@stackline/har-validator': packageJson.version,
+      'har-validator': `npm:@stackline/har-validator@${packageJson.version}`
     }
   }, null, 2) + '\n')
   run(npm, ['install', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund', '--registry', registry])

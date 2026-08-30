@@ -19,7 +19,8 @@ without `.js`, remain supported deep entries.
 - Ajv 6 error records, HAR 1.2 schema semantics, nullable cache entries,
   extension properties, URI formats, and date-time patterns are preserved.
 - CommonJS remains compatible with Node.js 6.17.1 and later.
-- The published package graph remains bundleable for browsers with one shared
+- The published package has no external runtime, optional, or peer dependency
+  edges and remains bundleable for browsers with one shared
   `HARError` identity across root and deep entries. Root-only self-contained
   ESM and CommonJS bundles are also supplied and tested.
 
@@ -41,7 +42,8 @@ change the CommonJS call behavior.
 
 ## Boundaries
 
-Ajv remains on the 6.x line to preserve validation and error semantics. The
+The self-contained validator runtime remains on the actively maintained Ajv
+6.15 compatibility line to preserve validation and error semantics. The
 package does not promise Ajv 8 error shapes, automatic HAR repair, streaming
 JSON parsing, or semantic validation beyond the upstream HAR 1.2 schemas.
 Development tooling requires a current Node release but is not part of the

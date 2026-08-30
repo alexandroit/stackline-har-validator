@@ -13,7 +13,7 @@ const globals = {
 }
 
 export default [
-  { ignores: ['coverage/**', 'dist/**', 'node_modules/**', 'release-candidate/**'] },
+  { ignores: ['coverage/**', 'dist/**', 'lib/vendor/ajv.js', 'node_modules/**', 'release-candidate/**'] },
   js.configs.recommended,
   {
     files: ['**/*.js', '**/*.cjs'],

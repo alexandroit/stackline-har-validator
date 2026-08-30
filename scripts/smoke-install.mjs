@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
 import { build } from 'esbuild'
 import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
 import os from 'node:os'
@@ -20,6 +20,19 @@ function run(command, arguments_, cwd = root, stdio = ['ignore', 'pipe', 'pipe']
   })
 }
 
+function cleanInstall(arguments_, cwd) {
+  const result = spawnSync(npm, arguments_, {
+    cwd,
+    encoding: 'utf8',
+    env: { ...process.env, NO_UPDATE_NOTIFIER: '1' },
+    stdio: ['ignore', 'pipe', 'pipe']
+  })
+  const transcript = `${result.stdout || ''}\n${result.stderr || ''}`
+  assert.equal(result.status, 0, transcript)
+  assert.doesNotMatch(transcript, /npm warn|deprecated|vulnerabilit/i)
+  return transcript
+}
+
 try {
   await mkdir(consumer)
   const output = run(npm, ['pack', '--silent', '--json', '--ignore-scripts', '--pack-destination', temporary]).trim()
@@ -37,7 +50,7 @@ try {
       'har-validator': `file:../${archive}`
     }
   }, null, 2) + '\n')
-  run(npm, ['install', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund'], consumer)
+  cleanInstall(['install', '--ignore-scripts', '--omit=dev', '--no-audit', '--no-fund'], consumer)
 
   await writeFile(path.join(consumer, 'commonjs.cjs'), `
 const assert = require('node:assert/strict')
@@ -128,9 +141,11 @@ console.log('packed ESM and deep facades passed')
   console.log('Packed browser CJS/ESM resolver and shared HARError identity passed.')
 
   const installed = JSON.parse(await readFile(path.join(consumer, 'node_modules', '@stackline', 'har-validator', 'package.json'), 'utf8'))
-  assert.deepEqual(installed.dependencies, { ajv: '6.15.0', 'har-schema': '2.0.0' })
+  assert.deepEqual(installed.dependencies, {})
   const tree = JSON.parse(run(npm, ['ls', '--omit=dev', '--all', '--json'], consumer))
   assert.equal(tree.problems, undefined)
+  const audit = JSON.parse(run(npm, ['audit', '--omit=dev', '--audit-level=low', '--json'], consumer))
+  assert.equal(audit.metadata.vulnerabilities.total, 0)
   console.log('Packed scoped, legacy-key, ESM, deep-entry, and production-tree consumers passed.')
 } finally {
   await rm(temporary, { force: true, recursive: true })

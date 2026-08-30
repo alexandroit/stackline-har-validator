@@ -3,8 +3,6 @@
 const assert = require('node:assert/strict')
 const { createHash } = require('node:crypto')
 const test = require('node:test')
-const baselinePromise = require('har-validator-baseline/lib/promise')
-const baselineSync = require('har-validator-baseline/lib/async')
 const currentPromise = require('../lib/promise.js')
 const currentSync = require('../lib/async.js')
 const validHar = require('./fixtures/har/valid.json')
@@ -50,16 +48,14 @@ async function outcome (validator, value) {
   }
 }
 
-test('Promise results match the immutable 5.1.5 implementation', async () => {
+test('Promise results match the immutable 5.1.5 golden corpus', async () => {
   assert.deepEqual(Object.keys(specific).sort(), names.slice().sort(), 'every validator has a valid non-falsy vector')
   const currentOutcomes = []
   for (const name of names) {
     const values = [undefined, null, false, 0, '', {}, [], specific[name]]
     for (const value of values) {
-      const baseline = await outcome(baselinePromise[name], value)
       const current = await outcome(currentPromise[name], value)
       currentOutcomes.push(current)
-      assert.deepEqual(current, baseline, `${name} differential value ${JSON.stringify(value)}`)
       if (current.ok && value) assert.equal(current.result, value)
     }
   }
@@ -68,24 +64,20 @@ test('Promise results match the immutable 5.1.5 implementation', async () => {
   assert.equal(currentHash, ajv612Golden.canonicalOutcomeSha256, 'all 144 vectors match isolated Ajv 6.12.3 golden outcomes')
 })
 
-test('boolean and callback results match 5.1.5', () => {
+test('boolean and callback results match the golden Promise contract', async () => {
   for (const name of names) {
     for (const value of [undefined, {}, [], specific[name]]) {
-      assert.equal(currentSync[name](value), baselineSync[name](value), `${name} boolean`)
+      const promised = await outcome(currentPromise[name], value)
+      assert.equal(currentSync[name](value), promised.ok, `${name} boolean`)
 
-      let baselineCallback
       let currentCallback
-      const baselineReturn = baselineSync[name](value, (error, valid) => {
-        baselineCallback = { valid, error: error && { name: error.name, message: error.message, errors: error.errors } }
-        return 'baseline-return'
-      })
       const currentReturn = currentSync[name](value, (error, valid) => {
         currentCallback = { valid, error: error && { name: error.name, message: error.message, errors: error.errors } }
         return 'current-return'
       })
-      assert.equal(baselineReturn, 'baseline-return')
       assert.equal(currentReturn, 'current-return')
-      assert.deepEqual(currentCallback, baselineCallback, `${name} callback`)
+      assert.equal(currentCallback.valid, promised.ok, `${name} callback validity`)
+      assert.deepEqual(currentCallback.error, promised.ok ? null : promised.error, `${name} callback error`)
     }
   }
 })

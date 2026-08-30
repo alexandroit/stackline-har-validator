@@ -2,7 +2,7 @@
 
 const assert = require('node:assert/strict')
 const test = require('node:test')
-const schemas = require('har-schema')
+const schemas = require('../lib/schemas')
 const validHar = require('./fixtures/har/valid.json')
 const invalidHar = require('./fixtures/har/invalid.json')
 const validRequest = require('./fixtures/request/valid.json')

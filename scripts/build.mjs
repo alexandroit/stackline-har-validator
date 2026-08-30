@@ -1,11 +1,30 @@
 import { build } from 'esbuild'
-import { mkdir, rm } from 'node:fs/promises'
+import { copyFile, mkdir, rm } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 const output = fileURLToPath(new URL('../dist/', import.meta.url))
+const vendor = fileURLToPath(new URL('../lib/vendor/', import.meta.url))
 await rm(output, { force: true, recursive: true })
 await mkdir(output, { recursive: true })
+await mkdir(vendor, { recursive: true })
+
+await build({
+  absWorkingDir: root,
+  bundle: true,
+  entryPoints: ['node_modules/ajv/lib/ajv.js'],
+  format: 'cjs',
+  legalComments: 'eof',
+  logLevel: 'warning',
+  outfile: `${vendor}/ajv.js`,
+  platform: 'node',
+  sourcemap: false,
+  target: ['node6']
+})
+await copyFile(
+  fileURLToPath(new URL('../node_modules/ajv/lib/refs/json-schema-draft-06.json', import.meta.url)),
+  `${vendor}/json-schema-draft-06.json`
+)
 
 const shared = {
   absWorkingDir: root,
@@ -21,4 +40,4 @@ const shared = {
 await build({ ...shared, entryPoints: ['lib/promise.js'], format: 'cjs', outfile: `${output}/har-validator.browser.cjs` })
 await build({ ...shared, entryPoints: ['index.mjs'], format: 'esm', outfile: `${output}/har-validator.browser.mjs` })
 
-console.log('Built two self-contained root browser bundles; package browser imports retain a shared module graph.')
+console.log('Built the self-contained Ajv runtime and two root browser bundles.')

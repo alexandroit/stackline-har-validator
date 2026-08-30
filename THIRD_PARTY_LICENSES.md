@@ -1,9 +1,10 @@
 # Third-party licenses
 
-The production graph and the self-contained browser builds contain the exact
-components below. A complete, unmodified license text for every component is
-shipped under `licenses/` so binary/browser redistribution retains the required
-copyright, conditions, and disclaimer.
+The self-contained Node and browser builds contain the exact components below.
+They are bundled implementation components, not external installation edges.
+A complete, unmodified license text for every component is shipped under
+`licenses/` so redistribution retains the required copyright, conditions,
+and disclaimer.
 
 | Component | Version | License | Shipped text |
 | --- | --- | --- | --- |
@@ -15,5 +16,7 @@ copyright, conditions, and disclaimer.
 | punycode | 2.3.1 | MIT | `licenses/punycode-2.3.1-MIT.txt` |
 | har-schema | 2.0.0 | ISC | `licenses/har-schema-2.0.0-ISC.txt` |
 
-The package's own LICENSE retains the upstream har-validator MIT text and
-NOTICE preserves attribution and the independent-maintenance disclosure.
+The `har-schema@2.0.0` row covers the exact 18 static JSON schemas under
+`lib/schemas/`. The package's own LICENSE retains the upstream har-validator
+MIT text and NOTICE preserves attribution and the independent-maintenance
+disclosure.
