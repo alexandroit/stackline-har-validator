@@ -5,6 +5,10 @@ var validate = require('..')
 var deepPromise = require('../lib/promise')
 var deepAsync = require('../lib/async')
 var HARError = require('../lib/error')
+var hasLegacyEmptyPort = require('../lib/legacy-uri-port')
+
+assert.strictEqual(hasLegacyEmptyPort('/'.repeat(100000)), false)
+assert.strictEqual(hasLegacyEmptyPort('//host:?query'), true)
 
 assert.strictEqual(validate, deepPromise)
 assert.deepStrictEqual(Object.keys(validate), [

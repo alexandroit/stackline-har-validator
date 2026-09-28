@@ -38,7 +38,7 @@ assert.equal(createHash('sha256').update(schemaLicense).digest('hex'),
 assert.match(notices, /har-schema[^\n]*2\.0\.0/)
 const bundledAjv = await readFile(path.join(root, 'lib', 'vendor', 'ajv.js'))
 assert.equal(createHash('sha256').update(bundledAjv).digest('hex'),
-  '4f8fe916ab12ba4eeccee11200c648410bbed3cc64d0f1bdf4dc1a2dd36fc2a4')
+  '56e86da96b5032b33595b4907c16410d8ac1ff1dfefc38e85575b7ca3895a0e0')
 
 const production = Object.entries(lock.packages)
   .filter(([location, metadata]) => location && !metadata.dev)

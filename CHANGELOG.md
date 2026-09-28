@@ -2,6 +2,7 @@
 
 ## [1.0.2] - 2026-09-28
 
+- Harden the vendored uri-js legacy empty-port fallback with a linear scan and regenerate all browser/runtime bundles.
 - Organize package documentation, preserve API and migration examples, and add Stackline community links.
 - Improve package discovery keywords with precise domain terms and `stackline`.
 - Pin GitHub Actions release tooling and require an explicit missing-version response before publication.

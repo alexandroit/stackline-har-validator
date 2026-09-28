@@ -20,3 +20,7 @@ The `har-schema@2.0.0` row covers the exact 18 static JSON schemas under
 `lib/schemas/`. The package's own LICENSE retains the upstream har-validator
 MIT text and NOTICE preserves attribution and the independent-maintenance
 disclosure.
+
+The uri-js 4.4.1 source is patched during vendoring to use a linear legacy
+empty-port predicate. See `DEPENDENCY_REVIEW.md`; upstream license notices are
+preserved verbatim.

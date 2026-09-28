@@ -46,3 +46,21 @@ Primary evidence:
   Node 6-24 tests;
 - complete bundled-component license inventory and CycloneDX SBOM;
 - registry artifact identity, CI, and CodeQL.
+
+## uri-js legacy port fallback (2026-09-28)
+
+CodeQL alerts 3 and 4 identify a quadratic regex in uri-js 4.4.1 included by
+Ajv 6.15.0. Repeated slashes with no colon reproduce its quadratic failure in
+isolation. This is a legacy branch selected only when unmatched regex groups
+are not `undefined`; supported Node engines use the other branch. The public
+HAR validator also compiles fixed internal schemas, rather than accepting
+caller-provided schema identifiers. A denial-of-service through current public
+HAR validation has therefore not been demonstrated.
+
+The build now replaces that exact upstream source expression with the linear,
+ES5-compatible predicate in `lib/legacy-uri-port.js`, before regenerating the
+vendored Ajv and both browser bundles. It preserves LF, CR, Unicode line-separator,
+empty-port and authority behavior and fails if the upstream patch site changes.
+Bounded differential cases and a million-character child-process regression
+cover the replacement. Licenses, schemas, external API and Node >=6 contract
+remain unchanged; no alert or scanning rule is suppressed.

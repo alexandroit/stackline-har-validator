@@ -40,8 +40,30 @@ var require_ajv = __commonJS({
         throw mod = 0, e;
       }
     };
+    var require_legacy_uri_port = __commonJS2({
+      "lib/legacy-uri-port.js"(exports2, module2) {
+        "use strict";
+        module2.exports = function hasLegacyEmptyPort(value) {
+          var authority = false;
+          for (var index = 0; index < value.length; index++) {
+            var code = value.charCodeAt(index);
+            if (code === 13 || code === 8232 || code === 8233) {
+              authority = false;
+            } else if (!authority && code === 47 && value.charCodeAt(index + 1) === 47) {
+              authority = true;
+              index++;
+            } else if (authority && code === 58) {
+              var next = value.charCodeAt(index + 1);
+              if (index + 1 === value.length || next === 47 || next === 63 || next === 35) return true;
+            }
+          }
+          return false;
+        };
+      }
+    });
     var require_uri_all = __commonJS2({
       "node_modules/uri-js/dist/es5/uri.all.js"(exports2, module2) {
+        var hasLegacyEmptyPort = require_legacy_uri_port();
         (function(global, factory) {
           typeof exports2 === "object" && typeof module2 !== "undefined" ? factory(exports2) : typeof define === "function" && define.amd ? define(["exports"], factory) : factory(global.URI = global.URI || {});
         })(exports2, (function(exports3) {
@@ -589,7 +611,7 @@ var require_ajv = __commonJS({
                 components.query = uriString.indexOf("?") !== -1 ? matches[7] : void 0;
                 components.fragment = uriString.indexOf("#") !== -1 ? matches[8] : void 0;
                 if (isNaN(components.port)) {
-                  components.port = uriString.match(/\/\/(?:.|\n)*\:(?:\/|\?|\#|$)/) ? matches[4] : void 0;
+                  components.port = hasLegacyEmptyPort(uriString) ? matches[4] : void 0;
                 }
               }
               if (components.host) {
