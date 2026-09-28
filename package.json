@@ -1,6 +1,6 @@
 {
   "name": "@stackline/har-validator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Compatibility-first HAR 1.2 validator with maintained packaging, browser builds, and first-party types",
   "type": "commonjs",
   "main": "./lib/promise.js",
@@ -8,56 +8,109 @@
   "types": "./index.d.ts",
   "exports": {
     ".": {
-      "types": { "import": "./index.d.mts", "require": "./index.d.cts", "default": "./index.d.ts" },
-      "browser": { "import": "./index.mjs", "require": "./lib/promise.js" },
+      "types": {
+        "import": "./index.d.mts",
+        "require": "./index.d.cts",
+        "default": "./index.d.ts"
+      },
+      "browser": {
+        "import": "./index.mjs",
+        "require": "./lib/promise.js"
+      },
       "import": "./index.mjs",
       "require": "./lib/promise.js",
       "default": "./lib/promise.js"
     },
     "./lib/promise": {
-      "types": { "import": "./index.d.mts", "require": "./index.d.cts", "default": "./index.d.ts" },
-      "browser": { "import": "./index.mjs", "require": "./lib/promise.js" },
+      "types": {
+        "import": "./index.d.mts",
+        "require": "./index.d.cts",
+        "default": "./index.d.ts"
+      },
+      "browser": {
+        "import": "./index.mjs",
+        "require": "./lib/promise.js"
+      },
       "import": "./index.mjs",
       "require": "./lib/promise.js",
       "default": "./lib/promise.js"
     },
     "./lib/promise.js": {
-      "types": { "import": "./index.d.mts", "require": "./index.d.cts", "default": "./index.d.ts" },
-      "browser": { "import": "./index.mjs", "require": "./lib/promise.js" },
+      "types": {
+        "import": "./index.d.mts",
+        "require": "./index.d.cts",
+        "default": "./index.d.ts"
+      },
+      "browser": {
+        "import": "./index.mjs",
+        "require": "./lib/promise.js"
+      },
       "import": "./index.mjs",
       "require": "./lib/promise.js",
       "default": "./lib/promise.js"
     },
     "./lib/async": {
-      "types": { "import": "./esm/async.d.mts", "require": "./lib/async.d.ts", "default": "./lib/async.d.ts" },
-      "browser": { "import": "./esm/async.mjs", "require": "./lib/async.js" },
+      "types": {
+        "import": "./esm/async.d.mts",
+        "require": "./lib/async.d.ts",
+        "default": "./lib/async.d.ts"
+      },
+      "browser": {
+        "import": "./esm/async.mjs",
+        "require": "./lib/async.js"
+      },
       "import": "./esm/async.mjs",
       "require": "./lib/async.js",
       "default": "./lib/async.js"
     },
     "./lib/async.js": {
-      "types": { "import": "./esm/async.d.mts", "require": "./lib/async.d.ts", "default": "./lib/async.d.ts" },
-      "browser": { "import": "./esm/async.mjs", "require": "./lib/async.js" },
+      "types": {
+        "import": "./esm/async.d.mts",
+        "require": "./lib/async.d.ts",
+        "default": "./lib/async.d.ts"
+      },
+      "browser": {
+        "import": "./esm/async.mjs",
+        "require": "./lib/async.js"
+      },
       "import": "./esm/async.mjs",
       "require": "./lib/async.js",
       "default": "./lib/async.js"
     },
     "./lib/error": {
-      "types": { "import": "./esm/error.d.mts", "require": "./lib/error.d.ts", "default": "./lib/error.d.ts" },
-      "browser": { "import": "./esm/error.mjs", "require": "./lib/error.js" },
+      "types": {
+        "import": "./esm/error.d.mts",
+        "require": "./lib/error.d.ts",
+        "default": "./lib/error.d.ts"
+      },
+      "browser": {
+        "import": "./esm/error.mjs",
+        "require": "./lib/error.js"
+      },
       "import": "./esm/error.mjs",
       "require": "./lib/error.js",
       "default": "./lib/error.js"
     },
     "./lib/error.js": {
-      "types": { "import": "./esm/error.d.mts", "require": "./lib/error.d.ts", "default": "./lib/error.d.ts" },
-      "browser": { "import": "./esm/error.mjs", "require": "./lib/error.js" },
+      "types": {
+        "import": "./esm/error.d.mts",
+        "require": "./lib/error.d.ts",
+        "default": "./lib/error.d.ts"
+      },
+      "browser": {
+        "import": "./esm/error.mjs",
+        "require": "./lib/error.js"
+      },
       "import": "./esm/error.mjs",
       "require": "./lib/error.js",
       "default": "./lib/error.js"
     },
     "./browser": {
-      "types": { "import": "./index.d.mts", "require": "./index.d.cts", "default": "./index.d.ts" },
+      "types": {
+        "import": "./index.d.mts",
+        "require": "./index.d.cts",
+        "default": "./index.d.ts"
+      },
       "import": "./dist/har-validator.browser.mjs",
       "require": "./dist/har-validator.browser.cjs",
       "default": "./dist/har-validator.browser.mjs"
@@ -113,15 +166,35 @@
     "verify": "npm run clean && npm run lint && npm run build && npm test && npm run test:coverage && npm run test:smoke && npm run check:package && npm run pack:check && npm run check:licenses && npm run audit:dependencies && npm run audit:all && npm run audit:signatures",
     "prepack": "npm run build"
   },
-  "repository": { "type": "git", "url": "git+https://github.com/alexandroit/stackline-har-validator.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexandroit/stackline-har-validator.git"
+  },
   "homepage": "https://alexandro.net/docs/vanilla/har-validator/",
-  "bugs": { "url": "https://github.com/alexandroit/stackline-har-validator/issues" },
-  "keywords": ["har", "http-archive", "validator", "json-schema", "browser", "typescript", "stackline"],
+  "bugs": {
+    "url": "https://github.com/alexandroit/stackline-har-validator/issues"
+  },
+  "keywords": [
+    "har",
+    "http-archive",
+    "validator",
+    "json-schema",
+    "browser",
+    "typescript",
+    "stackline",
+    "validation"
+  ],
   "author": "Stackline Maintainers",
-  "contributors": ["Ahmad Nassri"],
+  "contributors": [
+    "Ahmad Nassri"
+  ],
   "license": "MIT",
-  "engines": { "node": ">=6" },
-  "publishConfig": { "access": "public" },
+  "engines": {
+    "node": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {},
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",
