@@ -1,0 +1,29 @@
+{
+  "repository": "alexandroit/stackline-har-validator",
+  "packages": [
+    {
+      "name": "@stackline/har-validator",
+      "path": "README.md",
+      "version": "1.0.3",
+      "baselineVersion": "1.0.2",
+      "keywords": [
+        "stackline",
+        "npm-package",
+        "har-validator",
+        "browser",
+        "typescript",
+        "nodejs",
+        "har",
+        "http-archive",
+        "validator",
+        "json-schema",
+        "validation"
+      ],
+      "homepage": "https://alexandro.net/docs/vanilla/har-validator/",
+      "baselineTarball": "https://registry.npmjs.org/@stackline/har-validator/-/har-validator-1.0.2.tgz",
+      "baselineIntegrity": "sha512-NBvm3dV5OocU6DKs/sb19ECg0FcgYiTyXXlUs4Y8GWoHYb9BwsYbhS8/m8NSP20jTxMsYrOqfAOFaJ+FLqgWpA==",
+      "expectedSha512": "d22557582c910f5569f45f75f875905d963ee3cf75f5b38df6346f3ae955be87abeabecb3849e8dc8af6db819e9dad242d02e885ccd3b9f8041b12cfbf89f4d1",
+      "tag": "docs-stackline-har-validator-v1.0.3"
+    }
+  ]
+}
