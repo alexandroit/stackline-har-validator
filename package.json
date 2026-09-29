@@ -1,6 +1,6 @@
 {
   "name": "@stackline/har-validator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Compatibility-first HAR 1.2 validator with maintained packaging, browser builds, and first-party types",
   "type": "commonjs",
   "main": "./lib/promise.js",
@@ -175,13 +175,16 @@
     "url": "https://github.com/alexandroit/stackline-har-validator/issues"
   },
   "keywords": [
+    "stackline",
+    "npm-package",
+    "har-validator",
+    "browser",
+    "typescript",
+    "nodejs",
     "har",
     "http-archive",
     "validator",
     "json-schema",
-    "browser",
-    "typescript",
-    "stackline",
     "validation"
   ],
   "author": "Stackline Maintainers",
