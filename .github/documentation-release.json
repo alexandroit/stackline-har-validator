@@ -4,7 +4,7 @@
     {
       "name": "@stackline/har-validator",
       "path": "README.md",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "baselineVersion": "1.0.2",
       "keywords": [
         "stackline",
@@ -22,8 +22,8 @@
       "homepage": "https://alexandro.net/docs/vanilla/har-validator/",
       "baselineTarball": "https://registry.npmjs.org/@stackline/har-validator/-/har-validator-1.0.2.tgz",
       "baselineIntegrity": "sha512-NBvm3dV5OocU6DKs/sb19ECg0FcgYiTyXXlUs4Y8GWoHYb9BwsYbhS8/m8NSP20jTxMsYrOqfAOFaJ+FLqgWpA==",
-      "expectedSha512": "d22557582c910f5569f45f75f875905d963ee3cf75f5b38df6346f3ae955be87abeabecb3849e8dc8af6db819e9dad242d02e885ccd3b9f8041b12cfbf89f4d1",
-      "tag": "docs-stackline-har-validator-v1.0.3"
+      "expectedSha512": "6504a1d143d58fdb9f26fc2bcc16521af05aaf7ea4ef79eccd1faa7f58548a91e24c53f5305c0815c43773ffb55227e74b9725f1a6380ac5602f340469c2312b",
+      "tag": "docs-stackline-har-validator-v1.0.4"
     }
   ]
 }
