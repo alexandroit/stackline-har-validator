@@ -1,6 +1,6 @@
 {
   "name": "@stackline/har-validator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Compatibility-first HAR 1.2 validator with maintained packaging, browser builds, and first-party types",
   "type": "commonjs",
   "main": "./lib/promise.js",
