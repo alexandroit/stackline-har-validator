@@ -28,7 +28,7 @@ The upstream MIT license and attribution are preserved.
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/har-validator@1.0.4` |
+| Package | `@stackline/har-validator@1.0.5` |
 | Node.js runtime | `>=6` |
 | CommonJS / primary entry | `./lib/promise.js` |
 | ES module entry | `./index.mjs` |

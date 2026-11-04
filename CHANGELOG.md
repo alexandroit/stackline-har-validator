@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.5 - 2026-11-04
+
+- Update development dependency overrides for current security fixes.
+- Use patched Node.js tooling and validate release metadata against the package manifest.
+
 ## [1.0.2] - 2026-09-28
 
 - Harden the vendored uri-js legacy empty-port fallback with a linear scan and regenerate all browser/runtime bundles.
