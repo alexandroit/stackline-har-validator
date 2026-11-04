@@ -10,7 +10,7 @@
 
 **[Documentation](https://alexandro.net/docs/vanilla/har-validator/)** | **[npm](https://www.npmjs.com/package/@stackline/har-validator)** | **[Issues](https://github.com/alexandroit/stackline-har-validator/issues)** | **[Repository](https://github.com/alexandroit/stackline-har-validator)**
 
-**Current package version:** `1.0.4`
+**Current package version:** `1.0.6`
 
 ---
 
@@ -28,7 +28,7 @@ The upstream MIT license and attribution are preserved.
 
 | Item | Value |
 | --- | --- |
-| Package | `@stackline/har-validator@1.0.5` |
+| Package | `@stackline/har-validator@1.0.6` |
 | Node.js runtime | `>=6` |
 | CommonJS / primary entry | `./lib/promise.js` |
 | ES module entry | `./index.mjs` |
